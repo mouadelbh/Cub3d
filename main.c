@@ -6,11 +6,16 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 01:22:36 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/01/26 06:01:41 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:51:27 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
+
+void	set_position(int i, int j, t_player *player, char c)
+{
+
+}
 
 void	get_player(char **map, t_player *player)
 {
@@ -25,6 +30,7 @@ void	get_player(char **map, t_player *player)
 		{
 			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
 			{
+				set_position(i, j, player, map[i][j]);
 				player->x = (j * PX) + (PX / 2);
 				player->y = (i * PX) + (PX / 2);
 			}
@@ -40,6 +46,7 @@ void	init(t_mlx *mlx)
 	mlx->img = malloc(sizeof(t_img));
 	mlx->new_img = malloc(sizeof(t_img));
 	mlx->player = malloc(sizeof(t_player));
+	mlx->player->rays = malloc(WIDTH * PX);
 	get_player(mlx->map, mlx->player);
 	mlx->mlx = mlx_init();
 	mlx->win = mlx_new_window(mlx->mlx, WIDTH * PX, HEIGHT * PX, "Cub3d");

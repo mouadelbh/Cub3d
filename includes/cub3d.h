@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 02:28:16 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/01/26 06:18:10 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:50:48 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,13 @@
 #define WIDTH 12
 #define HEIGHT 12
 #define PX 64
-#define PLAYER_PX 15
+#define PLAYER_PX 10
+#define GREEN 0x00FF00
+#define RED 0xFF0000
+#define BLUE 0x0000FF
+#define FOV 60
+#define ROTATE 5
+#define PI 3.14
 // playable color
 // #define WALL 0x008080	// Teal
 // #define FLOOR 0xFFD700	// Gold
@@ -42,7 +48,7 @@
 # define S 115
 # define D 100
 # define ESC 65307
-# define PLAYER_SPEED 10
+# define PLAYER_SPEED 5
 
 typedef struct s_img
 {
@@ -59,6 +65,7 @@ typedef struct s_player
 	double	y;		//player y position
 	double	dir;	//player direction
 	double	fov;	//player field of view
+	int		*rays;	//rays distance to walls
 }	t_player;
 
 typedef struct s_mlx
@@ -81,6 +88,10 @@ void	buffer_img(t_img *img, char **map);
 void	draw_block(t_img *img, int width, int height, int color);
 void	free_arr(void **arr, int size);
 void	close_game(t_mlx *mlx);
+void	put_pixel(t_img *img, int x, int y, int color);
+void	draw_horizontal_line(t_img *img, int x, int y, int x2, int color);
+void	draw_line(t_img *img, int x0, int y0, int x, int y);
+void	draw_vertical_line(t_img *img, int x, int y, int y2, int color);
 char	**get_map(int fd);
 char	**ft_realloc(char **map, int size, int i);
 
