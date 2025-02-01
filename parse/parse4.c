@@ -6,7 +6,7 @@
 /*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 19:51:05 by asebaai           #+#    #+#             */
-/*   Updated: 2025/02/01 22:33:38 by asebaai          ###   ########.fr       */
+/*   Updated: 2025/02/01 22:47:14 by asebaai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static int	error_cases(char **map, int row, int col, int *ply_pos)
 		ft_putstr_fd("Please, replace it by spaces and try again\n", 2);
 		return (-1);
 	}
-	if (map[row][col] != ' ' && map[row][col] != '1'
-		&& map[row][col] != '0' && map[row][col] != 'N' && map[row][col] != 'S'
-		&& map[row][col] != 'W' && map[row][col] != 'E')
+	if (map[row][col] != ' ' && map[row][col] != '1' && map[row][col] != '0'
+		&& map[row][col] != 'N' && map[row][col] != 'S' && map[row][col] != 'W'
+		&& map[row][col] != 'E')
 		return (prblem("Error!\nWrong map content: ", map[row], "\n"));
 	if (map[row][col] == 'N' || map[row][col] == 'S' || map[row][col] == 'W'
 		|| map[row][col] == 'E')
@@ -36,7 +36,7 @@ int	check_map_content(char **map, int size)
 {
 	int	row;
 	int	col;
-	int	ply_pos; 
+	int	ply_pos;
 
 	row = 0;
 	ply_pos = 0;
@@ -58,8 +58,8 @@ int	check_map_content(char **map, int size)
 
 int	map_make(t_list *start, char ***map)
 {
-	int		i;
-	int		size;
+	int	i;
+	int	size;
 
 	size = find_size(start);
 	*map = (char **)malloc(sizeof(char *) * (size + 1));
@@ -112,6 +112,7 @@ int	switch_info_to_list(t_mlx *config)
 	}
 	return (0);
 }
+
 int	check_cub_content(t_mlx *config)
 {
 	if (!config->file)
@@ -119,8 +120,8 @@ int	check_cub_content(t_mlx *config)
 		prblem("Error!\n", "Empty file\n", "");
 		return (-1);
 	}
-	if (!config->no || !config->so || !config->we || !config->ea
-		|| !config->f || !config->c || !config->map)
+	if (!config->no || !config->so || !config->we || !config->ea || !config->f
+		|| !config->c || !config->map)
 	{
 		ft_putstr_fd("Error!\nGame configuration not complete\n", 2);
 		ft_putstr_fd("Please check again\n", 2);

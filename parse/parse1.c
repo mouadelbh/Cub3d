@@ -6,7 +6,7 @@
 /*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 19:51:05 by asebaai           #+#    #+#             */
-/*   Updated: 2025/02/01 22:17:59 by asebaai          ###   ########.fr       */
+/*   Updated: 2025/02/01 22:46:59 by asebaai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	prblem(char *msg1, char *msg2, char *msg3)
 
 int	check_file_path(char *gamefile)
 {
-	int		fd;
-	int		len;
+	int	fd;
+	int	len;
 
 	len = ft_strlen(gamefile);
 	if (gamefile[len - 1] == 'b' && gamefile[len - 2] == 'u'

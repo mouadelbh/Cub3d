@@ -14,7 +14,6 @@
 
 void	set_position(int i, int j, t_player *player, char c)
 {
-
 }
 
 int	check_cubfile(char *gamefile, t_mlx *config)
@@ -44,7 +43,8 @@ void	get_player(char **map, t_player *player)
 		j = 0;
 		while (j < WIDTH)
 		{
-			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
+			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
+				|| map[i][j] == 'W')
 			{
 				set_position(i, j, player, map[i][j]);
 				player->x = (j * PX) + (PX / 2);
@@ -104,7 +104,7 @@ void	close_game(t_mlx *mlx)
 	exit(0);
 }
 
-int main(int ac, char **av, char **env)
+int	main(int ac, char **av, char **env)
 {
 	t_mlx	mlx;
 

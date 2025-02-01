@@ -64,7 +64,7 @@ static int	have_bottom_wall(char **map, int i, int j, int size)
 	return (0);
 }
 
-int	is_surrounded_by_walls(char **map, int size, int i, int j) 
+int	is_surrounded_by_walls(char **map, int size, int i, int j)
 {
 	if (have_right_wall(map, i, j) && have_left_wall(map, i, j)
 		&& have_top_wall(map, i, j) && have_bottom_wall(map, i, j, size))

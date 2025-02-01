@@ -6,7 +6,7 @@
 /*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 19:51:05 by asebaai           #+#    #+#             */
-/*   Updated: 2025/02/01 22:33:44 by asebaai          ###   ########.fr       */
+/*   Updated: 2025/02/01 22:47:27 by asebaai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	is_start_map(char *line)
 
 int	find_size(t_list *start)
 {
-	int		size;
+	int	size;
 
 	size = 0;
 	while (start)
@@ -50,9 +50,10 @@ int	check_wall1(char **map, int size)
 		while (map[i][j])
 		{
 			if ((map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'S'
-				|| map[i][j] == 'W' || map[i][j] == 'E')
+					|| map[i][j] == 'W' || map[i][j] == 'E')
 				&& (!is_surrounded_by_walls(map, size, i, j)))
-				return (prblem("Error!\nMap not closed or space in map\n", "", ""));
+				return (prblem("Error!\nMap not closed or space in map\n", "",
+						""));
 			j++;
 		}
 		i++;
@@ -76,7 +77,6 @@ void	clear_list_ptr(t_list **list)
 
 void	garbage_collector(t_mlx *config)
 {
-	// free mlx ila khdmna bih!
 	if (config->file)
 		clear_list_ptr(&config->file);
 	free(config->map);

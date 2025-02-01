@@ -14,8 +14,8 @@
 
 int	check_wall(char **map, double x, double y)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	i = y / PX;
 	j = x / PX;
@@ -24,11 +24,11 @@ int	check_wall(char **map, double x, double y)
 	return (1);
 }
 
-int get_distance_to_wall(char **map, t_player *player, int dir_x, int dir_y)
+int	get_distance_to_wall(char **map, t_player *player, int dir_x, int dir_y)
 {
-	int next_x;
-	int next_y;
-	int distance;
+	int	next_x;
+	int	next_y;
+	int	distance;
 
 	distance = 0;
 	while (distance < PLAYER_SPEED)
@@ -36,7 +36,7 @@ int get_distance_to_wall(char **map, t_player *player, int dir_x, int dir_y)
 		next_x = player->x + dir_x * (distance + 1);
 		next_y = player->y + dir_y * (distance + 1);
 		if (!check_wall(map, next_x, next_y))
-			break;
+			break ;
 		distance += 1;
 	}
 	return (distance);

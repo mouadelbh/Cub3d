@@ -14,8 +14,8 @@
 
 void	draw_player(t_player *player, t_img *img)
 {
-	int		x;
-	int		y;
+	int	x;
+	int	y;
 
 	y = player->y - PLAYER_PX / 2;
 	while (y < player->y + PLAYER_PX / 2)
@@ -32,8 +32,8 @@ void	draw_player(t_player *player, t_img *img)
 
 void	draw_block(t_img *img, int width, int height, int color)
 {
-	int		y;
-	int		x;
+	int	y;
+	int	x;
 
 	y = height * PX + 1;
 	while (y < (height + 1) * PX - 1)
@@ -75,10 +75,12 @@ int	render_game(t_mlx *mlx)
 
 	new_img = mlx->new_img;
 	new_img->img = mlx_new_image(mlx->mlx, WIDTH * PX, HEIGHT * PX);
-	new_img->addr = mlx_get_data_addr(new_img->img, &new_img->bits, &new_img->line, &new_img->end);
+	new_img->addr = mlx_get_data_addr(new_img->img, &new_img->bits,
+			&new_img->line, &new_img->end);
 	buffer_img(mlx->new_img, mlx->map);
 	draw_player(mlx->player, mlx->new_img);
-	draw_line(mlx->new_img, mlx->player->x, mlx->player->y, mlx->player->x - 50, mlx->player->y - 10);
+	draw_line(mlx->new_img, mlx->player->x, mlx->player->y, mlx->player->x - 50,
+		mlx->player->y - 10);
 	if (mlx->img->img)
 		mlx_destroy_image(mlx->mlx, mlx->img->img);
 	mlx->img->img = new_img->img;

@@ -46,8 +46,8 @@ void	draw_vertical_line(t_img *img, int x, int y, int y2, int color)
 
 void	draw_line(t_img *img, int x0, int y0, int x, int y)
 {
-	double stepx;
-	double stepy;
+	double	stepx;
+	double	stepy;
 	double	dx;
 	double	dy;
 	int		i;
