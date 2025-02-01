@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 15:39:26 by mel-bouh          #+#    #+#             */
-/*   Updated: 2023/11/11 19:55:52 by mel-bouh         ###   ########.fr       */
+/*   Created: 2024/05/05 11:59:30 by asebaai           #+#    #+#             */
+/*   Updated: 2025/01/28 17:34:08 by asebaai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,30 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int	size;
+	size_t	len;
+	size_t	i;
 
-	size = ft_strlen(s);
-	while (size >= 0)
+	len = ft_strlen(s);
+	i = len + 1;
+	while (i--)
 	{
-		if (s[size] == (unsigned char)c)
-			return ((char *)s + size);
-		size--;
+		if (s[len] == (char)c)
+			return ((char *)s + len);
+		len--;
 	}
-	return (NULL);
+	return (0);
 }
+/*
+#include <stdio.h>
+#include <string.h>
+
+int	main(void)
+{
+	char	str[] = "il fait beau";
+	char	*ptr;
+
+	ptr = ft_strrchr(str, '-');
+		printf("%p\n", ptr);
+		printf("%c", *ptr);
+}
+*/

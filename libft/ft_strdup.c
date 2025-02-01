@@ -3,29 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 17:57:36 by mel-bouh          #+#    #+#             */
-/*   Updated: 2023/11/10 20:49:07 by mel-bouh         ###   ########.fr       */
+/*   Created: 2024/05/06 14:21:36 by asebaai           #+#    #+#             */
+/*   Updated: 2025/01/28 17:34:08 by asebaai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s)
 {
-	char	*s2;
+	char	*duplicate_s;
 	int		i;
 
 	i = 0;
-	s2 = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
-	if (s2 == NULL)
+	duplicate_s = (char *)malloc(sizeof(*duplicate_s) * (ft_strlen(s) + 1));
+	if (!duplicate_s)
 		return (NULL);
-	while (s1[i])
+	while (s[i])
 	{
-		s2[i] = s1[i];
+		duplicate_s[i] = s[i];
 		i++;
 	}
-	s2[i] = '\0';
-	return (s2);
+	duplicate_s[i] = '\0';
+	return (duplicate_s);
 }
+/*
+#include <stdio.h>
+#include <string.h>
+
+int	main(void)
+{
+	char	*duplicate_s;
+
+	duplicate_s = NULL;
+	printf("%p", duplicate_s);
+	duplicate_s = strdup("");
+	printf("%p", duplicate_s);
+	if (*duplicate_s == '\0')
+		printf("1");
+	free(duplicate_s);
+}*/

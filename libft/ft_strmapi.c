@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 19:48:40 by mel-bouh          #+#    #+#             */
-/*   Updated: 2023/11/10 15:41:17 by mel-bouh         ###   ########.fr       */
+/*   Created: 2024/05/12 13:55:27 by asebaai           #+#    #+#             */
+/*   Updated: 2025/01/28 17:34:08 by asebaai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,28 @@
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char	*str;
-	int		i;
-	int		len;
+	size_t	i;
 
 	i = 0;
-	if (!s || !f)
-		return (NULL);
-	len = ft_strlen(s);
-	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!s)
+		return (0);
+	str = ft_strdup(s);
 	if (!str)
 		return (NULL);
-	while (i < len)
+	while (str[i])
 	{
-		str[i] = f(i, s[i]);
+		str[i] = f(i, str[i]);
 		i++;
 	}
 	str[i] = '\0';
 	return (str);
 }
+/*
+#include <stdio.h>
+
+int	main(void)
+{
+	char	str[] = "abCDef-0";
+//	f = ft_uppercase;
+	printf("%s", ft_strmapi(str , (*ft_uppercase)(32, *str)));
+}*/

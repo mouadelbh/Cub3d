@@ -3,57 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 19:47:42 by mel-bouh          #+#    #+#             */
-/*   Updated: 2023/11/10 20:02:05 by mel-bouh         ###   ########.fr       */
+/*   Created: 2024/05/11 11:58:19 by asebaai           #+#    #+#             */
+/*   Updated: 2025/01/28 17:34:08 by asebaai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_lennb(long nl)
+static size_t	ft_lenstr(long nb, int sign)
 {
-	int	i;
+	int	c;
 
-	i = 1;
-	if (nl < 0)
+	c = 0;
+	if (nb == 0)
+		return (1);
+	while (nb > 0)
 	{
-		i++;
-		nl = -nl;
+		nb /= 10;
+		c++;
 	}
-	while (nl > 9)
-	{
-		nl /= 10;
-		i++;
-	}
-	return (i);
+	if (sign == 0)
+		c++;
+	return (c);
 }
 
-char	*ft_itoa(int n)
+static void	ft_convert(long nb, char *str, size_t len, int sign)
 {
-	long	nl;
-	int		i;
-	char	*nbr;
-	int		len;
+	str[len] = '\0';
+	str[--len] = nb % 10 + 48;
+	nb /= 10;
+	while (nb > 0)
+	{
+		str[--len] = nb % 10 + 48;
+		nb /= 10;
+	}
+	if (sign == 0)
+		str[0] = '-';
+}
 
-	i = 0;
-	nl = (long)n;
-	len = ft_lennb(nl);
-	nbr = (char *)malloc(sizeof(char) * (len + 1));
-	if (nbr == NULL)
+char	*ft_itoa(long n)
+{
+	char	*str;
+	long	nb;
+	int		sign;
+
+	nb = n;
+	sign = 1;
+	if (n < 0)
+	{
+		sign = 0;
+		nb *= -1;
+	}
+	str = (char *)malloc((ft_lenstr(nb, sign) + 1) * sizeof(char));
+	if (!str)
 		return (NULL);
-	if (nl < 0)
-	{
-		nbr[i++] = '-';
-		nl = -nl;
-	}
-	nbr[len] = '\0';
-	len--;
-	while (len >= i)
-	{
-		nbr[len--] = nl % 10 + '0';
-		nl /= 10;
-	}
-	return (nbr);
+	ft_convert(nb, str, ft_lenstr(nb, sign), sign);
+	return (str);
 }
+
+// #include <stdio.h>
+// #include <limits.h>
+// int	main(void)
+// {
+// 	// printf("%s\n", ft_itoa(-0));
+// 	// printf("%s\n", ft_itoa(0));
+// 	// printf("%s\n", ft_itoa(-123));
+// 	// printf("%s\n", ft_itoa(123));
+// 	// printf("%s\n", ft_itoa(2147483647));
+// 	// printf("%s\n", ft_itoa(-2147483648));
+// 	printf("%s\n%s\n", ft_itoa(LLONG_MAX), ft_itoa(-9223372036854775808));
+// }

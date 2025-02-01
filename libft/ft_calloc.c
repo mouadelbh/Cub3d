@@ -3,24 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 15:59:44 by mel-bouh          #+#    #+#             */
-/*   Updated: 2023/11/10 19:58:30 by mel-bouh         ###   ########.fr       */
+/*   Created: 2024/05/06 15:10:21 by asebaai           #+#    #+#             */
+/*   Updated: 2025/01/28 17:34:08 by asebaai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_calloc(size_t element, size_t size)
 {
-	void	*memory;
+	void	*ptr;
 
-	if (count && size && count > (UINT_MAX / size))
+	ptr = (void *)malloc(element * size * sizeof(char));
+	if (!ptr || element == 0 || size == 0)
+		return (ptr);
+	if ((element * size) / element != size)
+	{
+		free(ptr);
 		return (NULL);
-	memory = malloc(count * size);
-	if (!memory)
-		return (NULL);
-	ft_bzero(memory, count * size);
-	return (memory);
+	}
+	ft_memset(ptr, 0, element * size);
+	return (ptr);
 }
+/*
+#include <stdint.h>
+#include <stdio.h>
+
+int	main(void)
+{
+	void	*ptr;
+
+	ptr = calloc(0, 0);
+	printf("%p", ptr);
+	free(ptr);
+}
+*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 02:28:16 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/01/28 11:50:48 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/01 22:34:11 by asebaai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 # define CUB3D_H
 
 # include <stdio.h>
-# include <stdlib.h>
 # include <unistd.h>
-# include <fcntl.h>
+# include <stdlib.h>
+# include <errno.h>
 # include <math.h>
+# include <fcntl.h>
 # include <mlx.h>
-# include "get_next_line.h"
+# include <X11/keysym.h>
+# include <X11/X.h>
+# include "../libft/libft.h"
 
 #define WIDTH 12
 #define HEIGHT 12
@@ -73,6 +76,14 @@ typedef struct s_mlx
 	void		*mlx;		//pointer to the mlx server
 	void		*win;		//pointer to the window
 	char		**map;		//map to render
+	t_list		*file;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
+	char		*f;
+	char		*c;
+	int			nb_element;
 	t_img		*img;		//frame to render
 	t_img		*new_img;	//img to buffer next frame
 	t_player	*player;	//window width
@@ -94,5 +105,40 @@ void	draw_line(t_img *img, int x0, int y0, int x, int y);
 void	draw_vertical_line(t_img *img, int x, int y, int y2, int color);
 char	**get_map(int fd);
 char	**ft_realloc(char **map, int size, int i);
+
+/* PARSING */
+
+// check_cubfile
+int		check_file_path(char *gamefile);
+void	readfile_to_list(int fd, t_mlx *config);
+int		map_make(t_list *start, char ***map);
+int		switch_info_to_list(t_mlx *config);
+int		check_cubfile(char *gamefile, t_mlx *config);
+
+// check_MAP
+int		check_wall1(char **map, int size);
+int		check_map_content(char **map, int size);
+int		check_cub_content(t_mlx *config);
+
+// valid_element
+int		element_already_present(char *line, t_mlx *config);
+int		with_correct_info(char *line);
+int		valid_element(char *line);
+
+// is_surrounded_by_WALLS
+int		is_surrounded_by_walls(char **map, int size, int i, int j);
+
+// parssing_TOOLS
+int     prblem(char *msg1, char *msg2, char *msg3);
+int		find_size(t_list *start);
+int		is_start_map(char *line);
+int		is_empty_line(char *line);
+char	*dlt_spaces(char *line);
+char	*ft_strim_path(char *path);
+void	garbage_collector(t_mlx *config);
+
+// init_structures
+void	init_gameconfig(t_mlx *config);
+
 
 #endif

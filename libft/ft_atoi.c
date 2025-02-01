@@ -3,36 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 22:25:35 by mel-bouh          #+#    #+#             */
-/*   Updated: 2023/11/10 19:31:12 by mel-bouh         ###   ########.fr       */
+/*   Created: 2024/05/05 14:48:15 by asebaai           #+#    #+#             */
+/*   Updated: 2025/01/28 17:34:08 by asebaai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
-	int	i;
-	int	number;
-	int	sign;
+	int		i;
+	long	nb;
+	int		sign;
 
 	i = 0;
+	nb = 0;
 	sign = 1;
-	number = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+	while (str[i] && (str[i] == ' ' || ((str[i] > 8 && str[i] < 14))))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
-			sign *= -1;
+			sign = -1;
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (str[i] <= '9' && str[i] >= '0')
 	{
-		number = number * 10 + (str[i] - '0');
+		nb = nb * 10 + (str[i] - '0');
 		i++;
 	}
-	return (number * sign);
+	return (nb * sign);
 }
+
+// #include <stdio.h>
+
+// int	main(void)
+// {
+// 	printf("%ld", ft_atoi("   214,7483647"));
+// }

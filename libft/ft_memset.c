@@ -3,26 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 14:51:57 by mel-bouh          #+#    #+#             */
-/*   Updated: 2023/11/09 20:32:13 by mel-bouh         ###   ########.fr       */
+/*   Created: 2024/05/04 12:30:38 by asebaai           #+#    #+#             */
+/*   Updated: 2025/01/28 17:34:08 by asebaai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+void	*ft_memset(void *s, int c, size_t n)
 {
 	size_t			i;
-	unsigned char	*ub;
+	unsigned char	*ptr;
 
 	i = 0;
-	ub = (unsigned char *)b;
-	while (i < len)
+	ptr = (unsigned char *)s;
+	while (i < n)
 	{
-		ub[i] = c;
+		ptr[i] = (unsigned char)c;
 		i++;
 	}
-	return (b);
+	return (s);
 }
+/*
+#include <stdio.h>
+#include <string.h>
+
+int	main(void)
+{
+	char	array[100];
+	ft_memset(array, 0, sizeof(array));
+	printf("%d %d %d ", array[0], array[1], array[99]);
+	printf("\n");
+	memset(array, 1, sizeof(array));
+	printf("%d %d %d ", array[0], array[1], array[99]);
+}*/

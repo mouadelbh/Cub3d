@@ -3,40 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 17:04:42 by mel-bouh          #+#    #+#             */
-/*   Updated: 2023/11/06 18:15:50 by mel-bouh         ###   ########.fr       */
+/*   Created: 2024/05/04 16:26:44 by asebaai           #+#    #+#             */
+/*   Updated: 2025/01/28 17:34:08 by asebaai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	int	i;
+	size_t	i;
 
-	if (!dst && !src)
-		return (dst);
-	if (dst == src)
-		return (dst);
-	if (dst < src)
+	i = 0;
+	if ((char *)dest == NULL && (char *)src == NULL)
+		return (NULL);
+	if (dest <= src)
 	{
-		i = 0;
-		while (i < (int)len)
+		while (i < n)
 		{
-			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+			*((char *)dest + i) = *((char *)src + i);
 			i++;
 		}
 	}
 	else
 	{
-		i = len - 1;
-		while (i >= 0)
+		while (i < n)
 		{
-			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
-			i--;
+			*((char *)dest + (n - 1)) = *((char *)src + (n - 1));
+			n--;
 		}
 	}
-	return (dst);
+	return (dest);
 }
+/*
+#include <stdio.h>
+#include <string.h>
+
+int	main(void)
+{
+	char	str[10] = "aaabbbccc";
+
+//	ft_memmove(str, str+4, 4);
+//	printf("%s\n",str);
+//	ft_memmove(str, str+4, 3);
+//	printf("%s\n",str);
+	ft_memmove(str+2, str, 4);
+	printf("%s",str);
+}*/

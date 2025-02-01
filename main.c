@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 01:22:36 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/01/28 11:51:27 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/01 22:32:43 by asebaai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,22 @@
 void	set_position(int i, int j, t_player *player, char c)
 {
 
+}
+
+int	check_cubfile(char *gamefile, t_mlx *config)
+{
+	int	fd;
+
+	fd = check_file_path(gamefile);
+	if (fd == -1)
+		return (1);
+	readfile_to_list(fd, config);
+	if (switch_info_to_list(config) == -1 || check_cub_content(config) == -1)
+	{
+		garbage_collector(config);
+		return (-1);
+	}
+	return (0);
 }
 
 void	get_player(char **map, t_player *player)
@@ -42,7 +58,6 @@ void	get_player(char **map, t_player *player)
 
 void	init(t_mlx *mlx)
 {
-	mlx->map = get_map(open("map.cub", O_RDONLY));
 	mlx->img = malloc(sizeof(t_img));
 	mlx->new_img = malloc(sizeof(t_img));
 	mlx->player = malloc(sizeof(t_player));
@@ -89,13 +104,24 @@ void	close_game(t_mlx *mlx)
 	exit(0);
 }
 
-int main()
+int main(int ac, char **av, char **env)
 {
 	t_mlx	mlx;
 
 	mlx.mlx = NULL;
 	mlx.win = NULL;
-	mlx.map = get_map(open("map.cub", O_RDONLY));
+	if (env && !env[0])
+		return (prblem("error!\n", "environement NULL", "    *__*\n"));
+	init_gameconfig(&mlx);
+	if (ac == 2 && av[1] && av[1][0] != '\0')
+	{
+		if (check_cubfile(av[1], &mlx) != 0)
+			return (1);
+		printf("WORK!\n");
+		// hna ghatbda lcode ! mlx dyalna ntl3o raycast dyalna
+	}
+	else
+		ft_putstr_fd("Error!\nParameter not valid\n", 2);
 	init(&mlx);
 	mlx_hook(mlx.win, 2, (1L << 0), key_press, &mlx);
 	mlx_loop_hook(mlx.mlx, render_game, &mlx);
