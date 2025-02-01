@@ -22,7 +22,7 @@ $(NAME): $(OBJ)
 	make -C $(LIBFTDIR) bonus
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFTDIR)/libft.a $(LMX) -lm -lz -o $(NAME)
 
-%.o: %.c
+%.o: %.c includes/cub3d.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 05:49:55 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/02/21 14:31:49 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/22 14:31:17 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,24 @@ void	draw_rays(t_player *player, t_mlx *mlx)
 {
 	int		x;
 	int		y;
+	int		i;
 	double	angle;
 	double	len;
 
+	i = 0;
 	rays_length(player, mlx->map);
-	angle = player->dir;
-	x = player->x + cos(angle) * player->rays[0];
-	y = player->y - sin(angle) * player->rays[0];
-	draw_line(mlx->new_img, player->x, player->y, x, y);
+	while (i < SCREEN_WIDTH)
+	{
+		angle = player->angles[i];
+		len = player->rays[i];
+		x = player->x + cos(angle) * len;
+		y = player->y - sin(angle) * len;
+		draw_line(mlx->new_img, player->x, player->y, x, y);
+		i++;
+	}
+	// x = player->x + cos(player->dir) * player->rays[0];
+	// y = player->y - sin(player->dir) * player->rays[0];
+	// draw_line(mlx->new_img, player->x, player->y, x, y);
 }
 
 void	draw_hits(t_img *img)
@@ -95,18 +105,18 @@ void	draw_hits(t_img *img)
 		j = 0;
 		while (j < WIDTH * PX)
 		{
+			// if (hits[i][j] == 1)
+			// {
+			// 	for (int k = -size; k <= size; k++)
+			// 	{
+			// 		if (i + k >= 0 && i + k < HEIGHT * PX)
+			// 			put_pixel(img, j, i + k, 0xFFFFFF); // Vertical line
+			// 		if (j + k >= 0 && j + k < WIDTH * PX)
+			// 			put_pixel(img, j + k, i, 0xFFFFFF); // Horizontal line
+			// 	}
+			// 	hits[i][j] = 0;
+			// }
 			if (hits[i][j] == 1)
-			{
-				for (int k = -size; k <= size; k++)
-				{
-					if (i + k >= 0 && i + k < HEIGHT * PX)
-						put_pixel(img, j, i + k, 0xFFFFFF); // Vertical line
-					if (j + k >= 0 && j + k < WIDTH * PX)
-						put_pixel(img, j + k, i, 0xFFFFFF); // Horizontal line
-				}
-				hits[i][j] = 0;
-			}
-			else if (hits[i][j] == 2)
 			{
 				for (int k = -size; k <= size; k++)
 				{
@@ -136,7 +146,7 @@ int	render_game(t_mlx *mlx)
 	draw_rays(mlx->player, mlx);
 	if (mlx->img->img)
 		mlx_destroy_image(mlx->mlx, mlx->img->img);
-	draw_hits(mlx->new_img);
+	// draw_hits(mlx->new_img);
 	mlx->img->img = new_img->img;
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->new_img->img, 0, 0);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 01:22:36 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/02/21 13:45:20 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/22 14:08:14 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	set_position(int i, int j, t_player *player, char c)
 		player->dir = PI / 2;
 	else if (c == 'S')
 		player->dir = 3 * PI / 2;
+	player->fov = FOV * (PI / 180);
 }
 
 void	get_player(char **map, t_player *player)
@@ -71,8 +72,10 @@ void	init(t_mlx *mlx)
 	mlx->img = malloc(sizeof(t_img));
 	mlx->new_img = malloc(sizeof(t_img));
 	mlx->player = malloc(sizeof(t_player));
-	mlx->player->rays = malloc(sizeof(int) * 1);
-	mlx->player->rays[0] = 0;
+	mlx->player->rays = malloc(sizeof(int) * SCREEN_WIDTH);
+	ft_bzero(mlx->player->rays, sizeof(int) * SCREEN_WIDTH);
+	mlx->player->angles = malloc(sizeof(double) * SCREEN_WIDTH);
+	ft_bzero(mlx->player->angles, sizeof(double) * SCREEN_WIDTH);
 	get_player(mlx->map, mlx->player);
 	mlx->mlx = mlx_init();
 	mlx->win = mlx_new_window(mlx->mlx, WIDTH * PX, HEIGHT * PX, "Cub3d");

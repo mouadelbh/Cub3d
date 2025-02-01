@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:17:34 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/02/21 15:35:33 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/22 14:27:06 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,61 +83,68 @@ int	distance_y(int x0, int y0, int *xi, int *yi, double angle)
 
 int hit_wall(double angle, int x, int y, char **map)
 {
-	int	offset;
-	int	tile_x;
-	int	tile_y;
+	double	offset;
+	double	pixel_x;
+	double	pixel_y;
+	int		tile_x;
+	int		tile_y;
 
-	offset = 1;
+	offset = 0.001;
+	pixel_x = (double)x;
+	pixel_y = (double)y;
 	if (fabs(cos(angle)) >= EPSILON)
 	{
 		if (cos(angle) > 0)
-			x += offset;
+			pixel_x += offset;
 		else
-			x -= offset;
+			pixel_x -= offset;
 	}
 	if (fabs(sin(angle)) >= EPSILON)
 	{
 		if (sin(angle) > 0)
-			y -= offset;
+			pixel_y -= offset;
 		else
-			y += offset;
+			pixel_y += offset;
 	}
-	tile_x = x / PX;
-	tile_y = y / PX;
+	tile_x = (int)floor(pixel_x / PX);
+	tile_y = (int)floor(pixel_y / PX);
 	if (tile_x < 0 || tile_y < 0 || tile_x >= WIDTH || tile_y >= HEIGHT)
 		return (1);
 	if (map[tile_y][tile_x] == '1')
+	{
+		hits[y][x] = 1;
 		return (1);
+	}
 	return 0;
 }
 
 
-int	vertical_grid(t_player *player, char **map)
+int	vertical_grid(t_player *player, char **map, double angle)
 {
 	t_trig	trig;
 	int		total;
 
 	total = 0;
-	trig.dx = distance_x(player->x, player->y, &trig.x0, &trig.y0, player->dir);
+	trig.dx = distance_x(player->x, player->y, &trig.x0, &trig.y0, angle);
 	if (trig.dx == INT_MAX)
 		return (INT_MAX);
 	total += trig.dx;
-	if (hit_wall(player->dir, trig.x0, trig.y0, map))
+	if (hit_wall(angle, trig.x0, trig.y0, map))
 		return (total);
-	trig.dx = distance_x(trig.x0, trig.y0, &trig.x1, &trig.y1, player->dir);
+	trig.dx = distance_x(trig.x0, trig.y0, &trig.x1, &trig.y1, angle);
 	if (trig.dx == INT_MAX)
 		return (INT_MAX);
 	total += trig.dx;
-	if (hit_wall(player->dir, trig.x1, trig.y1, map))
+	if (hit_wall(angle, trig.x1, trig.y1, map))
 		return (total);
 	trig.Yi = abs(trig.y1 - trig.y0);
-	while (!hit_wall(player->dir, trig.x1, trig.y1, map))
+	while (!hit_wall(angle, trig.x1, trig.y1, map))
 	{
-		if (cos(player->dir) > 0)
+		if (cos(angle) > 0)
 			trig.x1 += PX;
 		else
 			trig.x1 -= PX;
-		if (sin (player->dir) > 0)
+		if (sin (angle) > 0)
 			trig.y1 -= trig.Yi;
 		else
 			trig.y1 += trig.Yi;
@@ -158,16 +165,16 @@ int	horizontal_grid(t_player *player, char **map, double angle)
 	if (trig.dy == INT_MAX)
 		return (INT_MAX);
 	total += trig.dy;
-	if (hit_wall(player->dir, trig.x0, trig.y0, map))
+	if (hit_wall(angle, trig.x0, trig.y0, map))
 		return (total);
 	trig.dy = distance_y(trig.x0, trig.y0, &trig.x1, &trig.y1, angle);
 	if (trig.dy == INT_MAX)
 		return (INT_MAX);
 	total += trig.dy;
-	if (hit_wall(player->dir, trig.x1, trig.y1, map))
+	if (hit_wall(angle, trig.x1, trig.y1, map))
 		return (total);
 	trig.Xi = abs(trig.x1 - trig.x0);
-	while (!hit_wall(player->dir, trig.x1, trig.y1, map))
+	while (!hit_wall(angle, trig.x1, trig.y1, map))
 	{
 		if (cos(angle) > 0)
 			trig.x1 += trig.Xi;
@@ -186,13 +193,34 @@ void	rays_length(t_player *player, char **map)
 {
 	int		dx;
 	int		dy;
+	int		i;
 	double	angle;
+	double	start_angle;
 
-	angle = player->dir;
-	dx = vertical_grid(player, map);
-	dy = horizontal_grid(player, map,angle);
-	if (dx < dy)
-		player->rays[0] = dx;
-	else
-		player->rays[0] = dy;
+	i = 0;
+	start_angle = player->dir - (player->fov / 2);
+	while (i < SCREEN_WIDTH)
+	{
+		angle = start_angle + (i * player->fov / SCREEN_WIDTH);
+		angle = normalize_angle(angle);
+		player->angles[i] = angle;
+		i++;
+	}
+	i = 0;
+	while (i < SCREEN_WIDTH)
+	{
+		dx = vertical_grid(player, map, player->angles[i]);
+		dy = horizontal_grid(player, map, player->angles[i]);
+		if (dx < dy)
+			player->rays[i] = dx;
+		else
+			player->rays[i] = dy;
+		i++;
+	}
+	// dx = vertical_grid(player, map, player->dir);
+	// dy = horizontal_grid(player, map, player->dir);
+	// if (dx < dy)
+	// 	player->rays[0] = dx;
+	// else
+	// 	player->rays[0] = dy;
 }

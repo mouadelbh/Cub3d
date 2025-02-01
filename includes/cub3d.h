@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 02:28:16 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/02/21 15:33:36 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/22 14:38:57 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,29 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+// Option 1: Nord-Inspired Palette
+// #define PLAYER  0x2E3440  // Deep bluish-gray
+// #define WALL    0x3B4252  // Muted dark tone
+// #define FLOOR   0x434C5E  // Slate blue-gray
+// #define RAY     0x88C0D0  // Cool light blue
+
+// Option 2: Moody Dark Contrast
+// #define PLAYER  0x1E1E2F  // Almost-black indigo
+// #define WALL    0x141414  // Deep matte black
+// #define FLOOR   0x242424  // Dark charcoal gray
+// #define RAY     0x3F88C5  // Vivid blue
+
+// Option 3: Urban Noir Palette
+// #define PLAYER  0x2C3E50  // Dark navy
+// #define WALL    0x34495E  // Muted blue-gray
+// # define PLAYER 0xFF4500	// Orange Red
+# define WALL 0x0000FF
+#define PLAYER 0xA52A00  // Darker Orange Red
+// #define WALL   0x00008B  // Darker Blue (DarkBlue)
+// # define FLOOR   0x2D2D2D  // Nearly black gray
+// # define FLOOR 0xb3b3b3
+# define RAY     0x1ABC9C  // Bright neon teal
+
 # define INT_MAX 2147483647
 # define EPSILON 1e-6
 # define WIDTH 12
@@ -34,30 +57,28 @@
 # define RED 0xFF0000
 # define BLUE 0x0000FF
 # define FOV 60
-# define ROTATE 5
+# define ROTATE 4
 # define PI 3.14
+# define SCREEN_WIDTH 320
 // # define PLAYER 0xEEB8C4 // PINK
 // # define PLAYER 0xcd9da8
 // # define WALL 0x808080
-# define RAY 0xFFCDB2
+// # define RAY 0xFFCDB2
 // # define PLAYER 0xFFFF00
 # define RED 0xFF0000
 # define GREEN 0x00FF00
-# define WALL 0x0000FF
 # define WHITE 0xFFFFFF
 # define BLACK 0x000000
 # define TRANS 0x00FF0000
-// # define FLOOR 0xb3b3b3
 # define GREY_V 0x6d6d6d
 
 // playable color
 // #define WALL 0x008080	// Teal
 // // #define FLOOR 0xFFD700	// Gold
-// #define PLAYER 0xFF4500	// Orange Red
 // // dark grey theme
 // # define WALL 0x6C6C6C   // Dark Grey
 # define FLOOR 0x2C2C2C  // Almost Black Grey
-# define PLAYER 0xFFD700 // Bright Gold
+// # define PLAYER 0xFFD700 // Bright Gold
 
 # define KEY_PRESS 2
 # define KEY_RELEASE 3
@@ -88,8 +109,9 @@ typedef struct s_player
 {
 	int		x;   // player x position
 	int		y;   // player y position
-	double dir; // player direction
-	double fov; // player field of view
+	double	dir; // player direction
+	double	fov; // player field of view
+	double	*angles; // rays angles
 	int 	*rays;  // rays distance to walls
 }			t_player;
 
