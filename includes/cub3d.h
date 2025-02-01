@@ -29,8 +29,7 @@
 #define RED 0xFF0000
 #define BLUE 0x0000FF
 #define FOV 60
-#define ROTATE 5
-#define PI 3.14
+#define PI 3.14159265359
 // playable color
 // #define WALL 0x008080	// Teal
 // #define FLOOR 0xFFD700	// Gold
@@ -47,6 +46,10 @@
 # define A 97
 # define S 115
 # define D 100
+# define LEFT 65361
+# define RIGHT 65363
+// # define UP 65362
+// # define DOWN 65364
 # define ESC 65307
 # define PLAYER_SPEED 5
 
@@ -92,6 +95,7 @@ void	put_pixel(t_img *img, int x, int y, int color);
 void	draw_horizontal_line(t_img *img, int x, int y, int x2, int color);
 void	draw_line(t_img *img, int x0, int y0, int x, int y);
 void	draw_vertical_line(t_img *img, int x, int y, int y2, int color);
+void	direction_to_wall(t_player *player, char **map);
 char	**get_map(int fd);
 char	**ft_realloc(char **map, int size, int i);
 

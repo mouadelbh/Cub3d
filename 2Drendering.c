@@ -12,6 +12,18 @@
 
 #include "includes/cub3d.h"
 
+void	draw_direction(t_player *player, t_img *img)
+{
+	int		x;
+	int		y;
+	double	angle;
+
+	angle = player->dir;
+	x = player->x + cos(angle) * 64;
+	y = player->y + sin(angle) * 64;
+	draw_line(img, player->x, player->y, x, y);
+}
+
 void	draw_player(t_player *player, t_img *img)
 {
 	int		x;
@@ -28,6 +40,7 @@ void	draw_player(t_player *player, t_img *img)
 		}
 		y++;
 	}
+	draw_direction(player, img);
 }
 
 void	draw_block(t_img *img, int width, int height, int color)
@@ -69,6 +82,19 @@ void	buffer_img(t_img *img, char **map)
 	}
 }
 
+void	draw_rays(t_player *player, t_mlx *mlx)
+{
+	int	x;
+	int	y;
+	int	angle;
+
+	direction_to_wall(player, mlx->map);
+	angle = player->dir;
+	x = player->x + cos(angle) * player->rays[0];
+	y = player->y + sin(angle) * player->rays[0];
+	draw_line(mlx->new_img, player->x, player->y, x, y);
+}
+
 int	render_game(t_mlx *mlx)
 {
 	t_img	*new_img;
@@ -78,7 +104,7 @@ int	render_game(t_mlx *mlx)
 	new_img->addr = mlx_get_data_addr(new_img->img, &new_img->bits, &new_img->line, &new_img->end);
 	buffer_img(mlx->new_img, mlx->map);
 	draw_player(mlx->player, mlx->new_img);
-	draw_line(mlx->new_img, mlx->player->x, mlx->player->y, mlx->player->x - 50, mlx->player->y - 10);
+	draw_rays(mlx->player, mlx);
 	if (mlx->img->img)
 		mlx_destroy_image(mlx->mlx, mlx->img->img);
 	mlx->img->img = new_img->img;

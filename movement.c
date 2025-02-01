@@ -19,9 +19,11 @@ int	check_wall(char **map, double x, double y)
 
 	i = y / PX;
 	j = x / PX;
+	if (i < 0 || i >= HEIGHT || j < 0 || j >= WIDTH)
+		return (-1);
 	if (map[i][j] == '1')
-		return (0);
-	return (1);
+		return (1);
+	return (0);
 }
 
 int get_distance_to_wall(char **map, t_player *player, int dir_x, int dir_y)

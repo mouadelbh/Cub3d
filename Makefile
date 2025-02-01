@@ -37,3 +37,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+# -lmlx -lXext -lX11 -lm -lz
