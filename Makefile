@@ -12,7 +12,7 @@ NAME = cub3d
 HEADERS = includes/cub3d.h
 HEADER_DIR = includes/
 SRC = main.c get_next_line.c get_next_line_utils.c map_utils.c movement.c 2Drendering.c \
-	2Ddrawing.c
+	2Ddrawing.c parsing/initialize.c parsing/parsing.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

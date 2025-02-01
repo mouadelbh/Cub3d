@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 01:22:36 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/01/28 11:51:27 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/01 11:39:53 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,17 +144,29 @@ void	close_game(t_mlx *mlx)
 	exit(0);
 }
 
-int main()
+int main(int argc, char **argv, char **env)
 {
 	t_mlx	mlx;
+	t_cubconfig	config;
 
-	mlx.mlx = NULL;
-	mlx.win = NULL;
-	mlx.map = get_map(open("map.cub", O_RDONLY));
-	init(&mlx);
-	mlx_hook(mlx.win, 2, (1L << 0), key_press, &mlx);
-	// mlx_loop_hook(mlx.mlx, render_game, &mlx);
-	mlx_loop(mlx.mlx);
-	close_game(&mlx);
+	if (env && !env[0])
+		return (prblem("error!\n", "environement NULL", "    *__*\n"));
+	init_gameconfig(&config);
+	if (argc == 2 && argv[1] && argv[1][0] != '\0')
+	{
+		if (check_cubfile(argv[1], &config) != 0)
+			return (1);
+		mlx.mlx = NULL;
+		mlx.win = NULL;
+		mlx.map = get_map(open("map.cub", O_RDONLY));
+		init(&mlx);
+		mlx_hook(mlx.win, 2, (1L << 0), key_press, &mlx);
+		// mlx_loop_hook(mlx.mlx, render_game, &mlx);
+		mlx_loop(mlx.mlx);
+		close_game(&mlx);
+		// hna ghatbda lcode ! mlx dyalna ntl3o raycast dyalna
+	}
+	else
+		ft_putstr_fd("Error!\nParameter not valid\n", 2);
 	return (0);
 }

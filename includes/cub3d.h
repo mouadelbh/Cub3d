@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 02:28:16 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/01/28 11:50:48 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/01 11:38:26 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <math.h>
 # include <mlx.h>
 # include "get_next_line.h"
+# include "parsing.h"
 
 #define WIDTH 12
 #define HEIGHT 12

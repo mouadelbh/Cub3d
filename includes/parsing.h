@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:13:42 by asebaai           #+#    #+#             */
-/*   Updated: 2025/01/29 16:32:22 by asebaai          ###   ########.fr       */
+/*   Updated: 2025/02/01 11:46:34 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef PARSING_H
+# define PARSING_H
 
 # include <stdio.h>
 # include <unistd.h>
@@ -21,8 +21,8 @@
 # include <fcntl.h>
 # include <mlx.h>
 # include <X11/keysym.h>
-#include <X11/X.h>
-# include "libft/libft.h"
+# include <X11/X.h>
+# include "../libft/libft.h"
 
 # define SCREEN_W 640
 # define SCREEN_H 480
@@ -33,33 +33,33 @@
 // ->ll = line_length
 // ->ed = endian => indique l'ordre d'interpretation des octets
 
-typedef struct s_imge
-{
-	void	*img;
-	char	*addr;
-	int		width;
-	int		height;
-	int		bpp;
-	int		ll;
-	int		ed;
-}				t_imge;
+// typedef struct s_imge
+// {
+// 	void	*img;
+// 	char	*addr;
+// 	int		width;
+// 	int		height;
+// 	int		bpp;
+// 	int		ll;
+// 	int		ed;
+// }				t_imge;
 
-typedef struct s_player
-{
-	char	start_pos;
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-	double	camera_x;
-	double	mov_x;
-	double	mov_y;		
-}			t_player;
+// typedef struct s_player
+// {
+// 	char	start_pos;
+// 	double	pos_x;
+// 	double	pos_y;
+// 	double	dir_x;
+// 	double	dir_y;
+// 	double	plane_x;
+// 	double	plane_y;
+// 	double	camera_x;
+// 	double	mov_x;
+// 	double	mov_y;
+// }			t_player;
 
 // player rah bayn ash kaydir f l'ecran
-// darori position dyal player tbdel f l'ecran , dirction dyal player tbdel f l'ecran 
+// darori position dyal player tbdel f l'ecran , dirction dyal player tbdel f l'ecran
 // w plane dyal player tbdel f l'ecran
 // w camera_x dyal player tbdel f l'ecran
 // w mov_x w mov_y dyal player tbdel f l'ecran walakin wash hadshi ghay
@@ -81,20 +81,20 @@ typedef struct s_ray
 	int		side;
 }			t_ray;
 
-typedef struct s_draw
-{
-	int		wall_height;
-	int		draw_start;
-	int		draw_end;
-	t_imge	*txt_no;
-	t_imge	*txt_so;
-	t_imge	*txt_we;
-	t_imge	*txt_ea;
-	int		c[3];
-	int		f[3];
-	double	wall_x;
-	int		txt_x;
-}		t_draw;
+// typedef struct s_draw
+// {
+// 	int		wall_height;
+// 	int		draw_start;
+// 	int		draw_end;
+// 	t_imge	*txt_no;
+// 	t_imge	*txt_so;
+// 	t_imge	*txt_we;
+// 	t_imge	*txt_ea;
+// 	int		c[3];
+// 	int		f[3];
+// 	double	wall_x;
+// 	int		txt_x;
+// }		t_draw;
 
 typedef struct s_gameconfig
 {

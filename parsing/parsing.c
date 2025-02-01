@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:26:07 by asebaai           #+#    #+#             */
-/*   Updated: 2025/01/29 16:32:51 by asebaai          ###   ########.fr       */
+/*   Updated: 2025/02/01 11:43:44 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "main.h"
+# include "../includes/cub3d.h"
 
 int	prblem(char *msg1, char *msg2, char *msg3)
 {
@@ -285,7 +285,7 @@ static int	have_bottom_wall(char **map, int i, int j, int size)
 	return (0);
 }
 
-int	is_surrounded_by_walls(char **map, int size, int i, int j) 
+int	is_surrounded_by_walls(char **map, int size, int i, int j)
 {
 	if (have_right_wall(map, i, j) && have_left_wall(map, i, j)
 		&& have_top_wall(map, i, j) && have_bottom_wall(map, i, j, size))
@@ -339,7 +339,7 @@ int	check_map_content(char **map, int size)
 {
 	int	row;
 	int	col;
-	int	ply_pos; 
+	int	ply_pos;
 
 	row = 0;
 	ply_pos = 0;
@@ -467,24 +467,5 @@ int	check_cubfile(char *gamefile, t_cubconfig *config)
 		garbage_collector(config);
 		return (-1);
 	}
-	return (0);
-}
-
-int	main(int argc, char **argv, char **env)
-{
-	t_cubconfig	config;
-
-	if (env && !env[0])
-		return (prblem("error!\n", "environement NULL", "    *__*\n"));
-	init_gameconfig(&config);
-	if (argc == 2 && argv[1] && argv[1][0] != '\0')
-	{
-		if (check_cubfile(argv[1], &config) != 0)
-			return (1);
-		printf("WORK!\n");
-		// hna ghatbda lcode ! mlx dyalna ntl3o raycast dyalna
-	}
-	else
-		ft_putstr_fd("Error!\nParameter not valid\n", 2);
 	return (0);
 }

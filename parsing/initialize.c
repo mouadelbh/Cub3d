@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 15:57:13 by asebaai           #+#    #+#             */
-/*   Updated: 2025/01/29 16:30:20 by asebaai          ###   ########.fr       */
+/*   Updated: 2025/02/01 11:43:52 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../includes/cub3d.h"
 
 static void	init_imge(t_imge *imge)
 {
@@ -25,11 +25,11 @@ static void	init_imge(t_imge *imge)
 
 static void	init_ray(t_ray *r)
 {
-	r->map_x = 0; 
+	r->map_x = 0;
 	r->map_y = 0;
 	r->ray_x = 0.0;
 	r->ray_y = 0.0;
-	r->delta_x = 0.0; 
+	r->delta_x = 0.0;
 	r->delta_y = 0.0;
 	r->side_x = 0;
 	r->side_y = 0;
@@ -38,12 +38,12 @@ static void	init_ray(t_ray *r)
 	r->step_y = 0;
 	r->hit = 0;
 	r->side = 0;
-	// nshr7 lik hadi hiya les variables li kayna f ray structure 
+	// nshr7 lik hadi hiya les variables li kayna f ray structure
 	// bash n3aytohom b les variables li kayna f player structure
-	// like delta hiya distance between two points 
-	// like side hiya side of the wall b7al left or right 
+	// like delta hiya distance between two points
+	// like side hiya side of the wall b7al left or right
 	// like step hiya step of the ray b7al 1 or -1 wakila
-	// like hit hiya if the ray hit the wall or not 
+	// like hit hiya if the ray hit the wall or not
 	// baraka 3lik khoya !
 }
 
@@ -51,8 +51,8 @@ void	init_gameconfig(t_cubconfig *config)
 {
 	config->file = NULL; // hadi hiya les lignes dyal fichier
 	config->map = NULL; // hadi hiya la map kaykon fih 0 o 1 o N o S o W o E
-	config->mlx = NULL; 
-	config->mlx_w = NULL; 
+	config->mlx = NULL;
+	config->mlx_w = NULL;
 	config->no = NULL;
 	config->so = NULL;
 	config->we = NULL;
