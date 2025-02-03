@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 02:28:16 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/02/01 22:34:11 by asebaai          ###   ########.fr       */
+/*   Updated: 2025/02/03 12:11:24 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@
 # define A 97
 # define S 115
 # define D 100
+# define LEFT 65361
+# define RIGHT 65363
+// # define UP 65362
+// # define DOWN 65364
 # define ESC 65307
 # define PLAYER_SPEED 5
 
@@ -89,22 +93,23 @@ typedef struct s_mlx
 	t_player *player; // window width
 }			t_mlx;
 
-int			move_right(t_mlx *mlx);
-int			move_left(t_mlx *mlx);
-int			move_up(t_mlx *mlx);
-int			move_down(t_mlx *mlx);
-int			render_game(t_mlx *mlx);
-void		draw_player(t_player *player, t_img *img);
-void		buffer_img(t_img *img, char **map);
-void		draw_block(t_img *img, int width, int height, int color);
-void		free_arr(void **arr, int size);
-void		close_game(t_mlx *mlx);
-void		put_pixel(t_img *img, int x, int y, int color);
-void		draw_horizontal_line(t_img *img, int x, int y, int x2, int color);
-void		draw_line(t_img *img, int x0, int y0, int x, int y);
-void		draw_vertical_line(t_img *img, int x, int y, int y2, int color);
-char		**get_map(int fd);
-char		**ft_realloc(char **map, int size, int i);
+int		move_right(t_mlx *mlx);
+int		move_left(t_mlx *mlx);
+int		move_up(t_mlx *mlx);
+int		move_down(t_mlx *mlx);
+int		render_game(t_mlx *mlx);
+int		check_wall(char **map, double x, double y);
+void	draw_player(t_player *player, t_img *img);
+void	buffer_img(t_img *img, char **map);
+void	draw_block(t_img *img, int width, int height, int color);
+void	free_arr(void **arr, int size);
+void	close_game(t_mlx *mlx);
+void	put_pixel(t_img *img, int x, int y, int color);
+void	draw_horizontal_line(t_img *img, int x, int y, int x2, int color);
+void	draw_line(t_img *img, int x0, int y0, int x, int y);
+void	draw_vertical_line(t_img *img, int x, int y, int y2, int color);
+char	**get_map(int fd);
+char	**ft_realloc(char **map, int size, int i);
 
 /* PARSING */
 

@@ -27,9 +27,9 @@ clean:
 	$(RM) $(OBJ)
 	make clean -C $(LIBFTDIR)
 
-fclean: 
+fclean:
 	$(RM) $(OBJ)
-	$(RM) $(NAME) 
+	$(RM) $(NAME)
 	make fclean -C $(LIBFTDIR)
 
 re: fclean all

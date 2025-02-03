@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 05:49:55 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/01/28 11:25:19 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/03 12:12:44 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	draw_player(t_player *player, t_img *img)
 		}
 		y++;
 	}
+	// draw_direction(player, img);
 }
 
 void	draw_block(t_img *img, int width, int height, int color)
@@ -68,6 +69,19 @@ void	buffer_img(t_img *img, char **map)
 		i++;
 	}
 }
+
+// void	draw_rays(t_player *player, t_mlx *mlx)
+// {
+// 	int	x;
+// 	int	y;
+// 	int	angle;
+
+// 	direction_to_wall(player, mlx->map);
+// 	angle = player->dir;
+// 	x = player->x + cos(angle) * player->rays[0];
+// 	y = player->y + sin(angle) * player->rays[0];
+// 	draw_line(mlx->new_img, player->x, player->y, x, y);
+// }
 
 int	render_game(t_mlx *mlx)
 {

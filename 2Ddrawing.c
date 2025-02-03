@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 10:34:03 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/01/28 11:32:56 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/03 12:13:03 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	draw_line(t_img *img, int x0, int y0, int x, int y)
 
 	dx = x - x0;
 	dy = y - y0;
-	step = fmax(abs(dx), abs(dy));
+	step = fmax(fabs(dx), fabs(dy));
 	i = 0;
 	if (dx == 0)
 		draw_vertical_line(img, x0, y0, y, GREEN);
