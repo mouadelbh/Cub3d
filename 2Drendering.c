@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 05:49:55 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/02/03 12:12:44 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/03 16:38:29 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,19 @@ void	buffer_img(t_img *img, char **map)
 	}
 }
 
-// void	draw_rays(t_player *player, t_mlx *mlx)
-// {
-// 	int	x;
-// 	int	y;
-// 	int	angle;
+void	draw_rays(t_player *player, t_mlx *mlx)
+{
+	int		x;
+	int		y;
+	double	angle;
 
-// 	direction_to_wall(player, mlx->map);
-// 	angle = player->dir;
-// 	x = player->x + cos(angle) * player->rays[0];
-// 	y = player->y + sin(angle) * player->rays[0];
-// 	draw_line(mlx->new_img, player->x, player->y, x, y);
-// }
+	// direction_to_wall(player, mlx->map);
+	angle = player->dir;
+	x = player->x + cos(angle) * 64;
+	y = player->y + sin(angle) * 64;
+	printf("x = %i y = %i\n", x, y);
+	draw_line(mlx->new_img, player->x, player->y, x, y);
+}
 
 int	render_game(t_mlx *mlx)
 {
@@ -89,12 +90,10 @@ int	render_game(t_mlx *mlx)
 
 	new_img = mlx->new_img;
 	new_img->img = mlx_new_image(mlx->mlx, WIDTH * PX, HEIGHT * PX);
-	new_img->addr = mlx_get_data_addr(new_img->img, &new_img->bits,
-			&new_img->line, &new_img->end);
+	new_img->addr = mlx_get_data_addr(new_img->img, &new_img->bits, &new_img->line, &new_img->end);
 	buffer_img(mlx->new_img, mlx->map);
 	draw_player(mlx->player, mlx->new_img);
-	draw_line(mlx->new_img, mlx->player->x, mlx->player->y, mlx->player->x - 50,
-		mlx->player->y - 10);
+	draw_rays(mlx->player, mlx);
 	if (mlx->img->img)
 		mlx_destroy_image(mlx->mlx, mlx->img->img);
 	mlx->img->img = new_img->img;

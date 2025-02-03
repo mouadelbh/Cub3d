@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 01:32:36 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/01/24 07:48:23 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/03 13:01:09 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,33 +41,4 @@ char	**ft_realloc(char **map, int size, int i)
 	}
 	free(map);
 	return (tmp);
-}
-
-char	**get_map(int fd)
-{
-	char	*line;
-	int		size;
-	int		i;
-	char	**map;
-
-	size = 5;
-	if (fd < 0)
-		return (NULL);
-	map = (char **)malloc(sizeof(char *) * (size + 1));
-	if (!map)
-		return (NULL);
-	i = 0;
-	line = get_next_line(fd);
-	while (line)
-	{
-		if (i == size - 1)
-		{
-			size *= 2;
-			map = ft_realloc(map, size, i);
-		}
-		map[i++] = line;
-		line = get_next_line(fd);
-	}
-	map[i] = NULL;
-	return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 01:22:36 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/02/03 12:12:21 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/03 16:06:51 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,14 +113,18 @@ void	init(t_mlx *mlx)
 
 void	update_dir(t_player *player, int keycode)
 {
+	double	rotation_speed;
+
+	rotation_speed = (PI / 180) * ROTATE;
 	if (keycode == LEFT)
-		player->dir -= PI / 60;
+		player->dir -= rotation_speed;
 	if (keycode == RIGHT)
-		player->dir += PI / 60;
+		player->dir += rotation_speed;
 	if (player->dir < 0)
 		player->dir += 2 * PI;
 	if (player->dir > 2 * PI)
 		player->dir -= 2 * PI;
+	printf("palyer dir = %f\n", player->dir);
 }
 
 int	key_press(int keycode, t_mlx *mlx)
@@ -140,6 +144,7 @@ int	key_press(int keycode, t_mlx *mlx)
 		update_dir(player, keycode);
 	if (keycode == ESC)
 		close_game(mlx);
+	printf("x = %i y = %i dir = %f\n", player->x, player->y, player->dir);
 	render_game(mlx);
 	return (0);
 }
@@ -174,7 +179,6 @@ int	main(int ac, char **av, char **env)
 		if (check_cubfile(av[1], &mlx) != 0)
 			return (1);
 		printf("WORK!\n");
-		// hna ghatbda lcode ! mlx dyalna ntl3o raycast dyalna
 	}
 	else
 		ft_putstr_fd("Error!\nParameter not valid\n", 2);

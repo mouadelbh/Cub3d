@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 06:23:30 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/01/26 06:35:32 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/03 16:21:00 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	check_wall(char **map, double x, double y)
 	if (i < 0 || i >= HEIGHT || j < 0 || j >= WIDTH)
 		return (-1);
 	if (map[i][j] == '1')
-		return (1);
-	return (0);
+		return (0);
+	return (1);
 }
 
 int	get_distance_to_wall(char **map, t_player *player, int dir_x, int dir_y)

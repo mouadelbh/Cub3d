@@ -10,15 +10,15 @@ LIBFTDIR = ./libft
 
 RM = rm -rf
 
-SRC = main.c map_utils.c movement.c 2Drendering.c 2Ddrawing.c parse/parse1.c parse/parse2.c parse/parse3.c parse/parse4.c parse/parse5.c iniat.c
+SRC = main.c map_utils.c movement.c 2Drendering.c 2Ddrawing.c parse/parse1.c parse/parse2.c parse/parse3.c parse/parse4.c parse/parse5.c init.c
 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-		make -C $(LIBFTDIR) bonus
-		$(CC) $(CFLAGS) $(OBJ) $(LIBFTDIR)/libft.a $(LMX) -lm -lz -o $(NAME)
+	make -C $(LIBFTDIR) bonus
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFTDIR)/libft.a $(LMX) -lm -lz -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

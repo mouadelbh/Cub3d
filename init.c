@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   iniat.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 15:57:13 by asebaai           #+#    #+#             */
-/*   Updated: 2025/02/01 22:31:17 by asebaai          ###   ########.fr       */
+/*   Updated: 2025/02/03 13:00:13 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ void	init_gameconfig(t_mlx *config)
 	config->ea = NULL;
 	config->f = NULL;
 	config->c = NULL;
-	config->nb_element = 0;
-		// hadi hiya les elements li kaykon f fichier khasso ikon 6 ola la
+	config->nb_element = 0;	// hadi hiya les elements li kaykon f fichier khasso ikon 6 ola la
 }

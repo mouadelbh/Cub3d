@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 02:28:16 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/02/03 12:11:24 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/03 16:05:14 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,29 +68,29 @@ typedef struct s_img
 
 typedef struct s_player
 {
-	double x;   // player x position
-	double y;   // player y position
+	int		x;   // player x position
+	int		y;   // player y position
 	double dir; // player direction
 	double fov; // player field of view
-	int *rays;  // rays distance to walls
+	int 	*rays;  // rays distance to walls
 }			t_player;
 
 typedef struct s_mlx
 {
-	void *mlx;  // pointer to the mlx server
-	void *win;  // pointer to the window
-	char **map; // map to render
-	t_list	*file;
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	char	*f;
-	char	*c;
-	int		nb_element;
-	t_img *img;       // frame to render
-	t_img *new_img;   // img to buffer next frame
-	t_player *player; // window width
+	void		*mlx;  // pointer to the mlx server
+	void		*win;  // pointer to the window
+	char		**map; // map to render
+	t_list		*file;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
+	char		*f;
+	char		*c;
+	int			nb_element;
+	t_img		*img;       // frame to render
+	t_img		*new_img;   // img to buffer next frame
+	t_player	*player; // window width
 }			t_mlx;
 
 int		move_right(t_mlx *mlx);
@@ -108,7 +108,7 @@ void	put_pixel(t_img *img, int x, int y, int color);
 void	draw_horizontal_line(t_img *img, int x, int y, int x2, int color);
 void	draw_line(t_img *img, int x0, int y0, int x, int y);
 void	draw_vertical_line(t_img *img, int x, int y, int y2, int color);
-char	**get_map(int fd);
+
 char	**ft_realloc(char **map, int size, int i);
 
 /* PARSING */
