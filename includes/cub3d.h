@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 02:28:16 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/02/03 16:05:14 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/07 20:54:02 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@
 // playable color
 // #define WALL 0x008080	// Teal
 // #define FLOOR 0xFFD700	// Gold
-// #define PLAYER 0xFF4500	// Orange Red
+#define PLAYER 0xFF4500	// Orange Red
 // dark grey theme
 # define WALL 0x6C6C6C   // Dark Grey
 # define FLOOR 0x2C2C2C  // Almost Black Grey
-# define PLAYER 0xFFD700 // Bright Gold
+// # define PLAYER 0xFFD700 // Bright Gold
 
 # define KEY_PRESS 2
 # define KEY_RELEASE 3

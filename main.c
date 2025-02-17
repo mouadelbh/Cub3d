@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 01:22:36 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/02/03 16:06:51 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/07 22:57:30 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,38 +39,6 @@ void	set_position(int i, int j, t_player *player, char c)
 	else if (c == 'S')
 		player->dir = 3 * PI / 2;
 }
-
-// void	direction_to_wall(t_player *player, char **map)
-// {
-// 	double	angle;
-// 	int	wall;
-// 	int	face;
-// 	int	x0;
-// 	int	y0;
-// 	int	x1;
-// 	int	y1;
-
-// 	angle = player->dir;
-// 	wall = 0;
-// 	x0 = player->x;
-// 	y0 = player->y;
-// 	if (angle > 0 && angle < PI)
-// 		face = 1;
-// 	else
-// 		face = -1;
-// 	while (!wall)
-// 	{
-// 		y1 = (y0 - y0 % PX) - 1;
-// 		x1 = x0 + (y0 - y1) / tan(angle);
-// 		if (check_wall(map, x1, y1))
-// 			wall = 1;
-// 		else
-// 		{
-// 			y0 += PX * face;
-// 			x0 += PX / tan(angle);
-// 		}
-// 	}
-// }
 
 void	get_player(char **map, t_player *player)
 {
@@ -124,7 +92,6 @@ void	update_dir(t_player *player, int keycode)
 		player->dir += 2 * PI;
 	if (player->dir > 2 * PI)
 		player->dir -= 2 * PI;
-	printf("palyer dir = %f\n", player->dir);
 }
 
 int	key_press(int keycode, t_mlx *mlx)
@@ -144,7 +111,6 @@ int	key_press(int keycode, t_mlx *mlx)
 		update_dir(player, keycode);
 	if (keycode == ESC)
 		close_game(mlx);
-	printf("x = %i y = %i dir = %f\n", player->x, player->y, player->dir);
 	render_game(mlx);
 	return (0);
 }
