@@ -1,4 +1,6 @@
 *.o
+libft/*.o
 libft.a
 cub3d
 a.out
+board.tldr

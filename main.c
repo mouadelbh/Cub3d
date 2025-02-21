@@ -6,11 +6,13 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 01:22:36 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/02/07 22:57:30 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/21 13:45:20 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
+
+int	hits[HEIGHT * 64][WIDTH * 64];
 
 int	check_cubfile(char *gamefile, t_mlx *config)
 {
@@ -85,9 +87,9 @@ void	update_dir(t_player *player, int keycode)
 
 	rotation_speed = (PI / 180) * ROTATE;
 	if (keycode == LEFT)
-		player->dir -= rotation_speed;
-	if (keycode == RIGHT)
 		player->dir += rotation_speed;
+	if (keycode == RIGHT)
+		player->dir -= rotation_speed;
 	if (player->dir < 0)
 		player->dir += 2 * PI;
 	if (player->dir > 2 * PI)

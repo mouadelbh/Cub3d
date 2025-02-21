@@ -10,7 +10,9 @@ LIBFTDIR = ./libft
 
 RM = rm -rf
 
-SRC = main.c map_utils.c movement.c 2Drendering.c 2Ddrawing.c parse/parse1.c parse/parse2.c parse/parse3.c parse/parse4.c parse/parse5.c init.c
+SRC = main.c map_utils.c movement.c 2Drendering.c 2Ddrawing.c 2Draycasting.c init.c \
+	parse/parse1.c parse/parse2.c parse/parse3.c parse/parse4.c parse/parse5.c \
+	math.c
 
 OBJ = $(SRC:.c=.o)
 

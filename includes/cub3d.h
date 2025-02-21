@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 02:28:16 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/02/07 20:54:02 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/21 15:33:36 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# define INT_MAX 2147483647
+# define EPSILON 1e-6
 # define WIDTH 12
 # define HEIGHT 12
 # define PX 64
@@ -34,14 +36,28 @@
 # define FOV 60
 # define ROTATE 5
 # define PI 3.14
+// # define PLAYER 0xEEB8C4 // PINK
+// # define PLAYER 0xcd9da8
+// # define WALL 0x808080
+# define RAY 0xFFCDB2
+// # define PLAYER 0xFFFF00
+# define RED 0xFF0000
+# define GREEN 0x00FF00
+# define WALL 0x0000FF
+# define WHITE 0xFFFFFF
+# define BLACK 0x000000
+# define TRANS 0x00FF0000
+// # define FLOOR 0xb3b3b3
+# define GREY_V 0x6d6d6d
+
 // playable color
 // #define WALL 0x008080	// Teal
-// #define FLOOR 0xFFD700	// Gold
-#define PLAYER 0xFF4500	// Orange Red
-// dark grey theme
-# define WALL 0x6C6C6C   // Dark Grey
+// // #define FLOOR 0xFFD700	// Gold
+// #define PLAYER 0xFF4500	// Orange Red
+// // dark grey theme
+// # define WALL 0x6C6C6C   // Dark Grey
 # define FLOOR 0x2C2C2C  // Almost Black Grey
-// # define PLAYER 0xFFD700 // Bright Gold
+# define PLAYER 0xFFD700 // Bright Gold
 
 # define KEY_PRESS 2
 # define KEY_RELEASE 3
@@ -56,6 +72,8 @@
 // # define DOWN 65364
 # define ESC 65307
 # define PLAYER_SPEED 5
+
+extern int hits[HEIGHT * 64][WIDTH * 64];
 
 typedef struct s_img
 {
@@ -74,6 +92,18 @@ typedef struct s_player
 	double fov; // player field of view
 	int 	*rays;  // rays distance to walls
 }			t_player;
+
+typedef struct s_trig
+{
+	int	x0;
+	int	y0;
+	int	x1;
+	int	y1;
+	int	dx;
+	int	dy;
+	int	Xi;
+	int	Yi;
+}			t_trig;
 
 typedef struct s_mlx
 {
@@ -99,6 +129,9 @@ int		move_up(t_mlx *mlx);
 int		move_down(t_mlx *mlx);
 int		render_game(t_mlx *mlx);
 int		check_wall(char **map, double x, double y);
+int		pythagore(int x0, int y0, int x, int y);
+int		hit_wall(double angle, int x, int y, char **map);
+void	rays_length(t_player *player, char **map);
 void	draw_player(t_player *player, t_img *img);
 void	buffer_img(t_img *img, char **map);
 void	draw_block(t_img *img, int width, int height, int color);
@@ -108,7 +141,6 @@ void	put_pixel(t_img *img, int x, int y, int color);
 void	draw_horizontal_line(t_img *img, int x, int y, int x2, int color);
 void	draw_line(t_img *img, int x0, int y0, int x, int y);
 void	draw_vertical_line(t_img *img, int x, int y, int y2, int color);
-
 char	**ft_realloc(char **map, int size, int i);
 
 /* PARSING */

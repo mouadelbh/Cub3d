@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 10:34:03 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/02/03 16:17:02 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/21 15:36:14 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	draw_horizontal_line(t_img *img, int x, int y, int dx, int color)
 	i = 0;
 	while (i <= abs(dx))
 	{
-		put_pixel(img, x + (i * step), y, color);
+		put_pixel(img, x + (i * step), y, RAY);
 		i++;
 	}
 }
@@ -47,7 +47,7 @@ void	draw_vertical_line(t_img *img, int x, int y, int dy, int color)
 	i = 0;
 	while (i <= abs(dy))
 	{
-		put_pixel(img, x, y + (i * step), color);
+		put_pixel(img, x, y + (i * step), RAY);
 		i++;
 	}
 }
@@ -75,7 +75,7 @@ void	draw_line(t_img *img, int x0, int y0, int x, int y)
 		stepy = (double)(dy / step);
 		while (i < step)
 		{
-			put_pixel(img, round(x0 + i * stepx), round(y0 + i * stepy), GREEN);
+			put_pixel(img, round(x0 + i * stepx), round(y0 + i * stepy), RAY);
 			i++;
 		}
 	}
