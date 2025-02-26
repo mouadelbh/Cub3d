@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 06:23:30 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/02/03 16:21:00 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/22 15:30:53 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,54 +44,58 @@ int	get_distance_to_wall(char **map, t_player *player, int dir_x, int dir_y)
 	return (distance);
 }
 
-int	move_right(t_mlx *mlx)
+int move_up(t_mlx *mlx)
 {
 	t_player	*player;
-	int			next_x;
+	int			move_x;
+	int			move_y;
 
 	player = mlx->player;
-	player->x += PLAYER_PX / 2;
-	next_x = get_distance_to_wall(mlx->map, player, 1, 0);
-	player->x -= PLAYER_PX / 2;
-	player->x += next_x;
-	return (0);
+	move_x = (int)(cos(player->dir) * PLAYER_SPEED);
+	move_y = (int)(-sin(player->dir) * PLAYER_SPEED);
+	player->x += move_x;
+	player->y += move_y;
+	return 0;
 }
 
-int	move_left(t_mlx *mlx)
+int move_down(t_mlx *mlx)
 {
 	t_player	*player;
-	int			next_x;
+	int			move_x;
+	int			move_y;
 
 	player = mlx->player;
-	player->x -= PLAYER_PX / 2;
-	next_x = get_distance_to_wall(mlx->map, player, -1, 0);
-	player->x += PLAYER_PX / 2;
-	player->x -= next_x;
-	return (0);
+	move_x = (int)(-cos(player->dir) * PLAYER_SPEED);
+	move_y = (int)(sin(player->dir) * PLAYER_SPEED);
+	player->x += move_x;
+	player->y += move_y;
+	return 0;
 }
 
-int	move_up(t_mlx *mlx)
+int move_right(t_mlx *mlx) // Strafe right
 {
 	t_player	*player;
-	int			next_y;
+	int			move_x;
+	int			move_y;
 
-	player = mlx->player;
-	player->y -= PLAYER_PX / 2;
-	next_y = get_distance_to_wall(mlx->map, player, 0, -1);
-	player->y += PLAYER_PX / 2;
-	player->y -= next_y;
-	return (0);
+    player = mlx->player;
+	move_x = (int)(sin(player->dir) * PLAYER_SPEED);
+	move_y = (int)(cos(player->dir) * PLAYER_SPEED);
+	player->x += move_x;
+	player->y += move_y;
+    return 0;
 }
 
-int	move_down(t_mlx *mlx)
+int move_left(t_mlx *mlx)
 {
 	t_player	*player;
-	int			next_y;
+	int			move_x;
+	int			move_y;
 
 	player = mlx->player;
-	player->y += PLAYER_PX / 2;
-	next_y = get_distance_to_wall(mlx->map, player, 0, 1);
-	player->y -= PLAYER_PX / 2;
-	player->y += next_y;
+	move_x = (int)(-sin(player->dir) * PLAYER_SPEED);
+	move_y = (int)(-cos(player->dir) * PLAYER_SPEED);
+	player->x += move_x;
+	player->y += move_y;
 	return (0);
 }
