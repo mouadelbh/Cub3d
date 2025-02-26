@@ -6,7 +6,7 @@
 /*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 02:28:16 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/02/25 18:10:41 by asebaai          ###   ########.fr       */
+/*   Updated: 2025/02/26 22:58:53 by asebaai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define SCREEN_W 1280
-# define SCREEN_H 720
-# define ROT_SPEED 0.045
-# define MOV_SPEED 0.45
+# define SCREEN_W 800
+# define SCREEN_H 800
+# define ROT_SPEED 0.0325
+# define MOV_SPEED 0.30
 
 typedef struct s_imge
 {

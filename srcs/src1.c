@@ -45,6 +45,7 @@ void	find_start_position(t_mlx *config)
 			|| map[y][x] == 'W')
 			{
 				config->player.start_pos = map[y][x];
+				map[y][x] = '0';
 				config->player.pos_x = y + 0.5;
 				config->player.pos_y = x + 0.5;
 				break ;
@@ -58,22 +59,22 @@ void	init_dir_plane(t_mlx *config)
 	if (config->player.start_pos == 'N')
 	{
 		config->player.dir_x = -1;
-		config->player.plane_y = 0.66;
+		config->player.plane_y = 0.52359877559;
 	}
 	if (config->player.start_pos == 'S')
 	{
 		config->player.dir_x = 1;
-		config->player.plane_y = -0.66;
+		config->player.plane_y = -0.52359877559;
 	}
 	if (config->player.start_pos == 'W')
 	{
 		config->player.dir_y = -1;
-		config->player.plane_x = -0.66;
+		config->player.plane_x = -0.52359877559;
 	}
 	if (config->player.start_pos == 'E')
 	{
 		config->player.dir_y = 1;
-		config->player.plane_x = 0.66;
+		config->player.plane_x = 0.52359877559;
 	}
 }
 
