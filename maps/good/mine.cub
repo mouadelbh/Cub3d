@@ -1,16 +1,9 @@
-   WE                            textures/grey_stone.xpm
-NO      textures/purple_stone.xpm
-
-
-
-SO textures/red_brick.xpm
+WE textures/Manface.xpm
+NO textures/Manface.xpm
+SO textures/Manface.xpm
+EA textures/Manface.xpm
 
 F      17,    38,     64
-
-EA textures/wood.xpm
-
-
-
 C 218, 234, 235
 
 1111111111111111111111111

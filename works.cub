@@ -1,7 +1,7 @@
-WE  ./textures/grey_stone.xpm
-NO  ./textures/purple_stone.xpm
-SO  ./textures/red_brick.xpm
-EA ./textures/nazi.xpm
+WE  ./textures/Manface.xpm
+NO  ./textures/mustach.xpm
+SO  ./textures/Manface.xpm
+EA ./textures/Woman-face.xpm
 
 
 
