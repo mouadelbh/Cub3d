@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   iniat.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 15:57:13 by asebaai           #+#    #+#             */
-/*   Updated: 2025/02/25 17:50:20 by asebaai          ###   ########.fr       */
+/*   Updated: 2025/02/27 14:58:07 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,12 @@ void	init_cubconfig(t_mlx *config)
 	config->player.plane_x = 0;
 	config->player.plane_y = 0;
 	config->player.camera_x = 0;
+	config->player.up = 0;
+	config->player.down = 0;
+	config->player.left = 0;
+	config->player.right = 0;
+	config->player.r_right = 0;
+	config->player.r_left = 0;
 	init_ray(&config->ray);
 	init_draw(&config->draw);
 	init_imge(&config->img);

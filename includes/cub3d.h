@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 02:28:16 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/02/26 22:58:53 by asebaai          ###   ########.fr       */
+/*   Updated: 2025/02/27 15:47:57 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 
 # define SCREEN_W 800
 # define SCREEN_H 800
-# define ROT_SPEED 0.0325
-# define MOV_SPEED 0.30
+# define ROT_SPEED 0.03
+# define MOV_SPEED 0.1
 
 typedef struct s_imge
 {
@@ -51,7 +51,13 @@ typedef struct s_player
 	double	plane_y;
 	double	camera_x;
 	double	mov_x;
-	double	mov_y;		
+	double	mov_y;
+	int		up;
+	int		right;
+	int		down;
+	int		left;
+	int		r_right;
+	int		r_left;
 }			t_player;
 
 typedef struct s_ray
@@ -136,7 +142,7 @@ char		*dlt_spaces(char *line);
 char		*ft_strim_path(char *path);
 void		garbage_collector(t_mlx *config);
 
-// free 
+// free
 void		destroye_img(t_mlx *config, t_draw *d);
 void		free_ptr_img(t_mlx *config);
 
@@ -166,8 +172,8 @@ int			put_pixel_col(t_mlx *c, t_imge *txt, int x);
 void		loop_ray(t_mlx *config);
 int			mouse_hook(void *param);
 void		display(t_mlx *config, t_imge *img);
-void		rotation_camera(int keysym, t_mlx *config, t_player *p);
-void		move_player_ns(int keysym, t_mlx *config, t_player *p);
-void		move_player_we(int keysym, t_mlx *config, t_player *p);
+void		rotation_camera(t_mlx *config, t_player *p);
+void		move_player_ns(t_mlx *config, t_player *p);
+void		move_player_we(t_mlx *config, t_player *p);
 
 #endif

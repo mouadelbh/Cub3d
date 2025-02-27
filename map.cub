@@ -1,7 +1,7 @@
-N    ./textures/apa.xpm
-S          ./textures/apa.xpm
-W            ./textures/apa.xpm
-E        ./textures/apa.xpm
+N    ./textures/wolfenstein/nazi.xpm
+S          ./textures/wolfenstein/blue_stone.xpm
+W            ./textures/wolfenstein/grey_stone.xpm
+E        ./textures/wolfenstein/red_brick.xpm
 
 C                0, 76,153
 F          120, 120  ,120
