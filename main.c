@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 01:22:36 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/02/27 15:41:38 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/27 17:12:04 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	render_game(t_mlx *config)
 
 	p = &config->player;
 	if (p->r_right || p->r_left)
-		rotation_camera(config, p);
+		rotation_camera(p);
 	if (p->up || p->down)
 		move_player_ns(config, p);
 	if (p->right || p->left)
@@ -76,7 +76,7 @@ int	render_game(t_mlx *config)
 void	game_loop(t_mlx *config, t_imge *img)
 {
 	config->mlx = mlx_init();
-	config->win = mlx_new_window(config->mlx, SCREEN_W, SCREEN_H, "cub4d");
+	config->win = mlx_new_window(config->mlx, SCREEN_W, SCREEN_H, "CUB3D");
 	img->img = mlx_new_image(config->mlx, SCREEN_W, SCREEN_H);
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->ll, &img->ed);
 	if (load_all_texture(config, &config->draw) == -1)

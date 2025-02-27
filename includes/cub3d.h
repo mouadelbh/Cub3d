@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 02:28:16 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/02/27 15:47:57 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/27 17:12:12 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ int			put_pixel_col(t_mlx *c, t_imge *txt, int x);
 void		loop_ray(t_mlx *config);
 int			mouse_hook(void *param);
 void		display(t_mlx *config, t_imge *img);
-void		rotation_camera(t_mlx *config, t_player *p);
+void		rotation_camera(t_player *p);
 void		move_player_ns(t_mlx *config, t_player *p);
 void		move_player_we(t_mlx *config, t_player *p);
 

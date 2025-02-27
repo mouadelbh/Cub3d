@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 19:51:05 by asebaai           #+#    #+#             */
-/*   Updated: 2025/02/27 15:27:26 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/27 17:16:11 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	display(t_mlx *config, t_imge *img)
 	mlx_put_image_to_window(config->mlx, config->win, img->img, 0, 0);
 }
 
-void	rotation_camera(t_mlx *config, t_player *p)
+void	rotation_camera(t_player *p)
 {
 	double	dir_ref;
 	double	plane_ref;
@@ -41,7 +41,6 @@ void	rotation_camera(t_mlx *config, t_player *p)
 		p->plane_x = p->plane_x * cos(-ROT_SPEED) - p->plane_y
 			* sin(-ROT_SPEED);
 		p->plane_y = plane_ref * sin(-ROT_SPEED) + p->plane_y * cos(-ROT_SPEED);
-		display(config, &config->img);
 	}
 	else if (p->r_left)
 	{
@@ -49,7 +48,6 @@ void	rotation_camera(t_mlx *config, t_player *p)
 		p->dir_y = dir_ref * sin(ROT_SPEED) + p->dir_y * cos(ROT_SPEED);
 		p->plane_x = p->plane_x * cos(ROT_SPEED) - p->plane_y * sin(ROT_SPEED);
 		p->plane_y = plane_ref * sin(ROT_SPEED) + p->plane_y * cos(ROT_SPEED);
-		display(config, &config->img);
 	}
 }
 
@@ -68,18 +66,8 @@ void move_player_ns(t_mlx *config, t_player *p)
 		delta_x = -p->dir_x * MOV_SPEED;
 		delta_y = -p->dir_y * MOV_SPEED;
 	}
-
-	// Predict the new positions.
 	double new_x = p->pos_x + delta_x;
 	double new_y = p->pos_y + delta_y;
-
-	/*
-		Adjust the horizontal (x) component:
-		If moving right (delta_x positive) and the cell to the right is a wall,
-		then if new_x would end up with a fractional part > 0.90, clamp it to (current cell + 0.90).
-		Similarly, if moving left (delta_x negative) and the cell to the left is a wall,
-		if new_x would have a fractional part less than 0.10, set it to (current cell + 0.10).
-	*/
 	int cell_x = (int)p->pos_x; // current cell in x
 	if (delta_x > 0)
 	{
@@ -99,12 +87,6 @@ void move_player_ns(t_mlx *config, t_player *p)
 				new_x = allowed_min;
 		}
 	}
-
-	/*
-		Adjust the vertical (y) component in the same manner:
-		For downward movement (delta_y positive) if the cell below is a wall, clamp to (current cell + 0.90);
-		For upward movement (delta_y negative) if the cell above is a wall, clamp to (current cell + 0.10).
-	*/
 	int cell_y = (int)p->pos_y; // current cell in y
 	if (delta_y > 0)
 	{
