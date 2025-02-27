@@ -6,13 +6,13 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 19:51:05 by asebaai           #+#    #+#             */
-/*   Updated: 2025/02/27 17:16:11 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/27 17:18:39 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	mouse_hook(void *param)
+int	esc_hook(void *param)
 {
 	t_mlx	*game;
 
@@ -68,7 +68,7 @@ void move_player_ns(t_mlx *config, t_player *p)
 	}
 	double new_x = p->pos_x + delta_x;
 	double new_y = p->pos_y + delta_y;
-	int cell_x = (int)p->pos_x; // current cell in x
+	int cell_x = (int)p->pos_x;
 	if (delta_x > 0)
 	{
 		if (config->map[cell_x + 1][(int)p->pos_y] == '1')
