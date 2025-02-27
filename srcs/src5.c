@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 19:51:05 by asebaai           #+#    #+#             */
-/*   Updated: 2025/02/27 17:18:39 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/27 17:41:09 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	rotation_camera(t_player *p)
 
 	dir_ref = p->dir_x;
 	plane_ref = p->plane_x;
-	if (p->r_right)
+	if (p->r_right || p->m_right)
 	{
 		p->dir_x = p->dir_x * cos(-ROT_SPEED) - p->dir_y * sin(-ROT_SPEED);
 		p->dir_y = dir_ref * sin(-ROT_SPEED) + p->dir_y * cos(-ROT_SPEED);
@@ -42,7 +42,7 @@ void	rotation_camera(t_player *p)
 			* sin(-ROT_SPEED);
 		p->plane_y = plane_ref * sin(-ROT_SPEED) + p->plane_y * cos(-ROT_SPEED);
 	}
-	else if (p->r_left)
+	else if (p->r_left || p->m_left)
 	{
 		p->dir_x = p->dir_x * cos(ROT_SPEED) - p->dir_y * sin(ROT_SPEED);
 		p->dir_y = dir_ref * sin(ROT_SPEED) + p->dir_y * cos(ROT_SPEED);

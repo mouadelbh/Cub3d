@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 14:48:15 by asebaai           #+#    #+#             */
-/*   Updated: 2025/02/22 16:28:51 by asebaai          ###   ########.fr       */
+/*   Updated: 2025/02/27 18:28:15 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,3 @@ long	ft_atoi(const char *str)
 	}
 	return (nb * sign);
 }
-
-// #include <stdio.h>
-
-// int	main(void)
-// {
-// 	//printf("%ld", ft_atoi("   214,7483647"));
-// }

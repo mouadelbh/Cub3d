@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 19:51:05 by asebaai           #+#    #+#             */
-/*   Updated: 2025/02/01 22:46:59 by asebaai          ###   ########.fr       */
+/*   Updated: 2025/02/27 18:38:35 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	*ft_strim_path(char *path)
 	int		j;
 	int		k;
 
-	i = 1;
+	i = 2;
 	j = ft_strlen(path) - 1;
 	tmp = path;
 	while (path[i] && (path[i] == ' ' || path[i] == '\t'))
@@ -88,13 +88,14 @@ char	*ft_strim_path(char *path)
 
 int	element_already_present(char *line, t_mlx *config)
 {
-	if (line[0] == 'N' && config->no == NULL)
+	line = dlt_spaces(line);
+	if (!ft_strncmp(line, "NO", 2) && config->no == NULL)
 		config->no = ft_strim_path(line);
-	else if (line[0] == 'S' && config->so == NULL)
+	else if (!ft_strncmp(line, "SO", 2) && config->so == NULL)
 		config->so = ft_strim_path(line);
-	else if (line[0] == 'W' && config->we == NULL)
+	else if (!ft_strncmp(line, "WE", 2) && config->we == NULL)
 		config->we = ft_strim_path(line);
-	else if (line[0] == 'E' && config->ea == NULL)
+	else if (!ft_strncmp(line, "EA", 2) && config->ea == NULL)
 		config->ea = ft_strim_path(line);
 	else if (line[0] == 'F' && config->f == NULL)
 		config->f = ft_strim_path(line);

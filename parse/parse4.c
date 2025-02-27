@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 19:51:05 by asebaai           #+#    #+#             */
-/*   Updated: 2025/02/01 22:47:14 by asebaai          ###   ########.fr       */
+/*   Updated: 2025/02/27 18:32:28 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int	switch_info_to_list(t_mlx *config)
 	tmp = config->file;
 	while (tmp)
 	{
+		
 		if (valid_element(tmp->content)
 			&& !element_already_present(tmp->content, config))
 			rslt = 0;

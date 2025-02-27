@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 15:57:13 by asebaai           #+#    #+#             */
-/*   Updated: 2025/02/27 14:58:07 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/27 17:39:04 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void	init_cubconfig(t_mlx *config)
 	config->player.right = 0;
 	config->player.r_right = 0;
 	config->player.r_left = 0;
+	config->player.m_right = 0;
+	config->player.m_left = 0;
 	init_ray(&config->ray);
 	init_draw(&config->draw);
 	init_imge(&config->img);

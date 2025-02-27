@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 19:51:05 by asebaai           #+#    #+#             */
-/*   Updated: 2025/02/01 22:18:03 by asebaai          ###   ########.fr       */
+/*   Updated: 2025/02/27 18:25:42 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,12 @@ int	valid_element(char *line)
 
 	line = dlt_spaces(line);
 	tmp = line;
-	if ((line[0] == 'N' || line[0] == 'S' || line[0] == 'W' || line[0] == 'E'
-			|| line[0] == 'C' || line[0] == 'F') && (line[1] == ' '
-			|| line[1] == '\t'))
+	if (((!ft_strncmp(line, "NO", 2) || !ft_strncmp(line, "SO", 2) || !ft_strncmp(line, "WE", 2) || !ft_strncmp(line, "EA", 2)) && (line[2] == ' ' || line[2] == '\t')) || ((line[0] == 'C' || line[0] == 'F') && (line[1] == ' ' || line[1] == '\t')))
 	{
-		tmp++;
+		tmp += 2;
 		while (*tmp && (*tmp == ' ' || *tmp == '\t'))
 			tmp++;
-		if (line[0] == 'N' || line[0] == 'S' || line[0] == 'W'
-			|| line[0] == 'E')
+		if ((!ft_strncmp(line, "NO", 2) || !ft_strncmp(line, "SO", 2) || !ft_strncmp(line, "WE", 2) || !ft_strncmp(line, "EA", 2)))
 		{
 			while (*tmp && *tmp != ' ' && *tmp != '\t')
 				tmp++;

@@ -6,7 +6,7 @@
 /*   By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 02:28:16 by mel-bouh          #+#    #+#             */
-/*   Updated: 2025/02/27 17:18:20 by mel-bouh         ###   ########.fr       */
+/*   Updated: 2025/02/27 18:29:06 by mel-bouh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 
 # define SCREEN_W 800
 # define SCREEN_H 800
-# define ROT_SPEED 0.03
-# define MOV_SPEED 0.1
+# define ROT_SPEED 0.02
+# define MOV_SPEED 0.03
 
 typedef struct s_imge
 {
@@ -58,6 +58,8 @@ typedef struct s_player
 	int		left;
 	int		r_right;
 	int		r_left;
+	int		m_right;
+	int		m_left;
 }			t_player;
 
 typedef struct s_ray
@@ -145,7 +147,6 @@ void		garbage_collector(t_mlx *config);
 // free
 void		destroye_img(t_mlx *config, t_draw *d);
 void		free_ptr_img(t_mlx *config);
-
 // init_structures
 void		init_cubconfig(t_mlx *config);
 

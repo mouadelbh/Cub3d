@@ -1,7 +1,7 @@
-N    ./textures/wolfenstein/nazi.xpm
-S          ./textures/wolfenstein/blue_stone.xpm
-W            ./textures/wolfenstein/grey_stone.xpm
-E        ./textures/wolfenstein/red_brick.xpm
+NO    ./textures/nazi.xpm
+SO          ./textures/blue_stone.xpm
+WE            ./textures/grey_stone.xpm
+EA        ./textures/red_brick.xpm
 
 C                0, 76,153
 F          120, 120       ,    120
