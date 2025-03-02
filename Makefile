@@ -8,7 +8,7 @@ LMX = -lmlx -lXext -lX11
 
 LIBFTDIR = ./libft
 
-HEADER = includes/cub3D.h
+HEADER = includes/cub3d.h
 
 RM = rm -rf
 
@@ -22,7 +22,7 @@ $(NAME): $(OBJ)
 		make -C $(LIBFTDIR) bonus
 		$(CC) $(CFLAGS) $(OBJ) $(LIBFTDIR)/libft.a $(LMX) -lm -lz -o $(NAME)
 
-%.o: %.c $(HRADER)
+%.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

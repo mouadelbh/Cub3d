@@ -3,18 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asebaai <asebaai@student.42.fr>            +#+  +:+       +#+         #
+#    By: mel-bouh <mel-bouh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 17:32:38 by asebaai           #+#    #+#              #
-#    Updated: 2025/02/25 17:58:27 by asebaai          ###   ########.fr        #
+#    Updated: 2025/02/27 20:45:32 by mel-bouh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a 
+NAME = libft.a
 
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
+
+HEADER = libft.h
 
 RM = rm -f
 
@@ -41,7 +43,7 @@ bonus: $(OBJ) $(OBJ_BONUS)
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
-%.o: %.c
+%.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
